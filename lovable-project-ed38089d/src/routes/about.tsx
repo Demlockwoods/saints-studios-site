@@ -1,14 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Check, Minus, X } from "lucide-react";
+import { Check, Minus, X, Zap, Eye, Shield } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import { LoopingLaptop } from "@/components/site/LoopingLaptop";
+import { Aurora, GlassOrbs, TiltCard } from "@/components/site/FX";
+import { Particles } from "@/components/site/MagicFX";
+import BlurText from "@/components/reactbits/BlurText";
+import ShinyText from "@/components/reactbits/ShinyText";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — We don't care about design awards | Saints Studios" },
+      { title: "Why Saints? — We care whether your phone rings | Saints Studios" },
       { name: "description", content: "Saints Studios was founded by Domekveer Chopra to fix one thing: Dubai businesses with great offers and invisible websites. Speed, transparency, the 7-day guarantee." },
-      { name: "keywords", content: "Domekveer Chopra, Saints Studios Dubai, Dubai web design studio, 7 day website Dubai" },
-      { property: "og:title", content: "About — Saints Studios" },
+      { name: "keywords", content: "Why Saints Studios, Domekveer Chopra, Dubai web design studio, 7 day website Dubai" },
+      { property: "og:title", content: "Why Saints? — Saints Studios" },
       { property: "og:description", content: "A Dubai growth studio built around speed, transparency, and outcomes — not awards." },
       { property: "og:url", content: "/about" },
     ],
@@ -19,9 +24,9 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   const differentiators = [
-    { n: "01", t: "Speed", b: "We deliver in 7 days. Not 6–8 weeks. Not 'it depends on revisions.' Seven days from receiving your assets to a live, optimised, Google-indexed website. We built our entire process around this promise — and we've never missed it." },
-    { n: "02", t: "Transparency", b: "Our process is documented and you see daily updates during the build. You know exactly what you're getting before you sign anything. No surprises. Ever." },
-    { n: "03", t: "The Guarantee", b: "If we miss the 7-day deadline through any fault of ours, your first month of retainer is free. We've never triggered it. We put it in writing because we want you to feel safe investing in us — not just hopeful." },
+    { n: "01", t: "Speed", b: "We deliver in 7 days. Not 6–8 weeks. Not 'it depends on revisions.' Seven days from receiving your assets to a live, optimised, Google-indexed website.", Icon: Zap, kpi: "7d" },
+    { n: "02", t: "Transparency", b: "Our process is documented and you see daily updates during the build. You know exactly what you're getting before you sign anything. No surprises. Ever.", Icon: Eye, kpi: "100%" },
+    { n: "03", t: "The Guarantee", b: "Miss the 7-day deadline through any fault of ours? Your first month of retainer is free. We put it in writing because we want you safe — not just hopeful.", Icon: Shield, kpi: "0" },
   ];
 
   const rows = [
@@ -37,11 +42,33 @@ function AboutPage() {
   return (
     <SiteLayout backdrop="about">
       {/* HERO */}
-      <section className="section-pad hero-pattern">
-        <div className="container-narrow max-w-4xl text-center mx-auto space-y-7 animate-fade-up">
-          <p className="eyebrow">About Saints Studios</p>
-          <h1 className="font-display text-5xl md:text-7xl text-espresso leading-[1.05]">
-            We don't care about design awards. We care about whether <em className="text-gold font-light">your phone rings.</em>
+      <section className="relative section-pad hero-pattern overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-90">
+          <Aurora />
+        </div>
+        <div className="absolute inset-0 pointer-events-none">
+          <Particles quantity={40} />
+        </div>
+        <div className="absolute inset-0 pointer-events-none">
+          <GlassOrbs count={4} />
+        </div>
+        <div className="relative container-narrow max-w-4xl text-center mx-auto space-y-7 animate-fade-in">
+          <p className="eyebrow flex items-center justify-center gap-3">
+            <span className="w-8 h-px bg-gold" /> Why Saints? <span className="w-8 h-px bg-gold" />
+          </p>
+          <h1 className="font-display text-5xl md:text-7xl text-espresso leading-[1.02]">
+            <BlurText
+              text="We don't care about design awards."
+              className="inline"
+              animateBy="words"
+              direction="top"
+              delay={80}
+            />
+            <br />
+            <span className="text-warm-brown">We care about whether </span>
+            <em className="text-gold font-light">
+              <ShinyText text="your phone rings." color="#C9973A" shineColor="#FFF4D6" speed={3} spread={80} />
+            </em>
           </h1>
           <p className="text-[16px] font-light text-warm-brown italic max-w-2xl mx-auto leading-relaxed">
             That's the only metric that matters to us. Not trophies. Not the approval
@@ -51,49 +78,69 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* WHAT WE DO */}
-      <section className="section-pad bg-cream-soft border-y border-warm-border">
-        <div className="container-narrow grid lg:grid-cols-[1fr_1.2fr] gap-16 items-start">
-          <div className="space-y-3 lg:sticky lg:top-28">
+      {/* WHAT WE DO — "Beautiful is a requirement, not a goal" */}
+      <section className="relative section-pad bg-cream-soft border-y border-warm-border overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-40">
+          <Aurora />
+        </div>
+        <div className="relative container-narrow">
+          <div className="max-w-4xl mx-auto text-center space-y-4 mb-14">
             <p className="eyebrow">What we actually do</p>
-            <h2 className="font-display text-4xl md:text-5xl text-espresso">
-              Beautiful is a requirement — not the goal.
+            <h2 className="font-display text-4xl md:text-6xl text-espresso leading-[1.05]">
+              Beautiful is a{" "}
+              <em className="text-gold font-light not-italic border-b border-gold/60 pb-1">requirement</em>
+              {" "}— not the goal.
             </h2>
+            <p className="text-[15px] font-light text-warm-brown max-w-2xl mx-auto leading-relaxed">
+              A great-looking website that generates no leads is a very expensive
+              piece of art. We make sure yours is neither.
+            </p>
           </div>
-          <div className="space-y-5 text-[15px] font-light text-warm-brown leading-relaxed">
-            <p>
-              Most web agencies will show you a beautiful portfolio and talk about
-              pixel-perfect design, cutting-edge aesthetics, and creative vision.
-              We're not that agency.
-            </p>
-            <p>
-              Saints Studios builds websites for Dubai businesses that need results.
-              We think about what a customer does when they land on your page. We
-              think about what makes them scroll, what makes them trust, and what
-              makes them pick up the phone or fill in a form. Then we build a
-              website around those behaviours.
-            </p>
-            <p>
-              If your site doesn't look the part, people won't trust it. But looking
-              good and generating business are two different things, and the gap
-              between them is where most web agencies fall flat. We close that gap.
-            </p>
-            <blockquote className="border-l-2 border-gold pl-5 mt-8">
-              <p className="font-display italic text-2xl text-espresso">
-                "A website that wins a design award but generates no leads is a very
-                expensive piece of art. We make sure yours is neither."
-              </p>
-            </blockquote>
+
+          {/* Split contrast: what most agencies do vs what we do */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            <TiltCard className="bg-cream border border-warm-border rounded-3xl p-8 md:p-10 group">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-10 h-10 rounded-full border border-warm-border flex items-center justify-center text-warm-brown">
+                  <X className="w-4 h-4" />
+                </span>
+                <p className="text-[11px] tracking-[0.25em] uppercase text-warm-brown">Most agencies</p>
+              </div>
+              <h3 className="font-display text-2xl text-espresso mb-3">
+                Sell you a portfolio.
+              </h3>
+              <ul className="space-y-2.5 text-[14px] text-warm-brown font-light">
+                <li>Pixel-perfect layouts, no strategy.</li>
+                <li>Six weeks, three revisions, no numbers.</li>
+                <li>You get a compliment. Not a customer.</li>
+              </ul>
+            </TiltCard>
+            <TiltCard className="bg-espresso text-ivory border border-gold/40 rounded-3xl p-8 md:p-10 shadow-[0_30px_80px_-40px_rgba(44,32,24,0.5)]">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="w-10 h-10 rounded-full bg-gold text-ivory flex items-center justify-center">
+                  <Check className="w-4 h-4" strokeWidth={3} />
+                </span>
+                <p className="text-[11px] tracking-[0.25em] uppercase text-gold">Saints Studios</p>
+              </div>
+              <h3 className="font-display text-2xl text-ivory mb-3">
+                Engineer a growth machine.
+              </h3>
+              <ul className="space-y-2.5 text-[14px] text-ivory/80 font-light">
+                <li>Every section built around a behaviour.</li>
+                <li>7-day delivery. Measurable from day one.</li>
+                <li>You get a phone that rings. Not a trophy.</li>
+              </ul>
+            </TiltCard>
           </div>
         </div>
       </section>
 
-      {/* WHO WE WORK WITH */}
+      {/* WHO WE WORK WITH — with looping laptop */}
       <section className="section-pad">
-        <div className="container-narrow grid lg:grid-cols-[1.2fr_1fr] gap-16 items-start">
-          <div className="space-y-5 text-[15px] font-light text-warm-brown leading-relaxed">
+        <div className="container-narrow grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
+          <div className="space-y-5 text-[15px] font-light text-warm-brown leading-relaxed reveal-left">
             <p className="eyebrow">Who we work with</p>
-            <h2 className="font-display text-4xl md:text-5xl text-espresso">
+            <h2 className="font-display text-5xl md:text-6xl text-espresso font-medium leading-[0.98]">
               Business owners. <em className="text-gold font-light">Not marketing departments.</em>
             </h2>
             <p>
@@ -103,46 +150,71 @@ function AboutPage() {
               communicating that effectively.
             </p>
             <p>
-              Our clients are busy running operations, managing staff, and
-              delivering their service. They don't have time to learn SEO or
-              understand Core Web Vitals. They need someone they trust to handle
-              all of it, report back clearly, and prove that the investment is
-              working.
+              Our clients don't have time to learn SEO or read about Core Web
+              Vitals. They need someone they trust to handle all of it, report
+              back clearly, and prove the investment is working.
             </p>
             <p className="font-display italic text-2xl text-espresso pt-2">
               That's exactly what we do.
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            {["Clinics","Restaurants","Law firms","Consultancies","Gyms","Retail brands","Real estate","Salons"].map((w, i) => (
-              <div
-                key={w}
-                className="aspect-square rounded-2xl border border-warm-border bg-cream-soft flex items-center justify-center font-display text-xl text-espresso hover:bg-espresso hover:text-ivory hover:rotate-2 transition-all"
-                style={{ animationDelay: `${i * 60}ms` }}
-              >
-                {w}
-              </div>
-            ))}
+          <div className="reveal-right">
+            <LoopingLaptop />
+            <p className="mt-6 text-center text-[12px] tracking-[0.25em] uppercase text-warm-brown">
+              Everything we do on your site — while you run your business.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* HOW WE'RE DIFFERENT */}
-      <section className="section-pad bg-espresso text-ivory">
-        <div className="container-narrow">
+      {/* HOW WE'RE DIFFERENT — richer visual */}
+      <section className="relative section-pad bg-espresso text-ivory overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-70">
+          <Particles quantity={40} color="#C9973A" />
+        </div>
+        <div className="relative container-narrow">
           <div className="max-w-2xl space-y-3 mb-16">
-            <p className="eyebrow">How we're different</p>
-            <h2 className="font-display text-4xl md:text-5xl text-ivory">
-              Three things that set us apart.
+            <p className="eyebrow text-gold">How we're different</p>
+            <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05]">
+              Three things that set us{" "}
+              <em className="text-gold font-light">apart.</em>
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-10">
-            {differentiators.map((d) => (
-              <div key={d.n} className="space-y-4 group">
-                <div className="font-display text-6xl text-gold leading-none group-hover:translate-x-1 transition-transform">{d.n}</div>
-                <h3 className="font-display text-2xl text-ivory">{d.t}</h3>
-                <p className="text-[14px] font-light text-ivory/70 leading-relaxed">{d.b}</p>
-              </div>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {differentiators.map((d, i) => (
+              <TiltCard
+                key={d.n}
+                className="relative rounded-3xl border border-gold/20 bg-gradient-to-b from-espresso-dark to-espresso p-8 group overflow-hidden reveal-scale"
+              >
+                <span
+                  aria-hidden
+                  className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-gold/10 blur-3xl group-hover:bg-gold/20 transition-colors"
+                />
+                <div className="relative space-y-5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-display text-6xl text-gold leading-none">{d.n}</span>
+                    <span className="w-14 h-14 rounded-full border border-gold/40 flex items-center justify-center text-gold group-hover:rotate-12 transition-transform">
+                      <d.Icon className="w-5 h-5" strokeWidth={1.5} />
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-3">
+                    <h3 className="font-display text-2xl text-ivory">{d.t}</h3>
+                    <span className="text-[11px] tracking-[0.25em] uppercase text-gold">
+                      {d.kpi}
+                    </span>
+                  </div>
+                  <div className="h-px w-16 bg-gold/40 group-hover:w-24 transition-all" />
+                  <p className="text-[14px] font-light text-ivory/75 leading-relaxed">
+                    {d.b}
+                  </p>
+                </div>
+                {i < differentiators.length - 1 && (
+                  <span
+                    aria-hidden
+                    className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-gold/40 to-transparent"
+                  />
+                )}
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -233,27 +305,8 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* CLIENT QUOTES */}
-      <section className="section-pad">
-        <div className="container-narrow max-w-2xl space-y-3 mb-12">
-          <p className="eyebrow">What clients say</p>
-          <h2 className="font-display text-4xl text-espresso">
-            Three quotes that matter more than any portfolio.
-          </h2>
-        </div>
-        <div className="container-narrow grid md:grid-cols-3 gap-6">
-          {[
-            { q: "I'd been burned by two agencies before Saints Studios. The difference was night and day — not just in the quality of the site, but in the number of enquiries we started getting within weeks of launch.", n: "Clinic owner, JBR" },
-            { q: "Domekveer told me exactly what he was going to do, did it in 6 days, and my restaurant has been fully booked every weekend since. That's the whole story.", n: "Restaurant owner, DIFC" },
-            { q: "I was sceptical about the 7-day promise. But they delivered on day 6 and the site was better than anything I'd seen from much larger agencies.", n: "Consultancy founder, Business Bay" },
-          ].map((c, i) => (
-            <div key={i} className="hover-lift-card bg-cream-soft border border-warm-border rounded-3xl p-7">
-              <p className="font-display italic text-xl text-espresso leading-snug">"{c.q}"</p>
-              <p className="text-[12px] text-warm-brown mt-5">{c.n}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* Client quotes temporarily removed until real testimonials arrive. */}
+
 
       {/* CTA */}
       <section className="section-pad bg-espresso text-ivory text-center">

@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Star, Zap, Smartphone, Search, Link2,
+  Zap, Smartphone, Search, Link2,
   ArrowRight, MessageCircle, Quote, ChevronLeft, ChevronRight,
 } from "lucide-react";
 import { useRef } from "react";
@@ -10,20 +10,20 @@ import { Meteors, AnimatedGridPattern, Particles } from "@/components/site/Magic
 import { TiltCard, Magnetic, CountUp, Aurora, Ripples, GlassOrbs, Parallax } from "@/components/site/FX";
 import { LosingMoney3D } from "@/components/site/LosingMoney3D";
 import { StickyGradientSection } from "@/components/site/StickyGradientSection";
+import { LoopingLaptop } from "@/components/site/LoopingLaptop";
 import BlurText from "@/components/reactbits/BlurText";
 import ShinyText from "@/components/reactbits/ShinyText";
-import ScrollReveal from "@/components/reactbits/ScrollReveal";
 import StarBorder from "@/components/reactbits/StarBorder";
 import Magnet from "@/components/reactbits/Magnet";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Saints Studios — Dubai web design that makes your phone ring" },
+      { title: "Saints Studios | Dubai web design that makes your phone ring" },
       { name: "description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days. Money-back guaranteed." },
       { name: "keywords", content: "Dubai web design, web design Dubai, Dubai SEO, lead generation Dubai, website Dubai, Saints Studios" },
-      { property: "og:title", content: "Saints Studios — Dubai web design that makes your phone ring" },
-      { property: "og:description", content: "Done-for-you web design for Dubai businesses that want more visibility, more leads, and a stronger online presence." },
+      { property: "og:title", content: "Saints Studios | Dubai web design that makes your phone ring" },
+      { property: "og:description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days. Money-back guaranteed." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -58,8 +58,6 @@ function Home() {
       </StickyGradientSection>
       <Process />
       <FeaturedResult />
-      
-      <Reviews />
       <FinalCTA />
     </SiteLayout>
   );
@@ -123,7 +121,7 @@ function Hero() {
               </StarBorder>
             </Magnet>
             <Magnet padding={60} magnetStrength={6}>
-              <Link to="/reviews" className="btn-secondary">Read our reviews</Link>
+              <Link to="/services" className="btn-secondary">See what we do</Link>
             </Magnet>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-4 text-[12px] text-warm-brown reveal">
@@ -183,23 +181,37 @@ function MockSite({ label, before }: { label: string; before?: boolean }) {
   );
 }
 
-/* ---------- SOCIAL PROOF ---------- */
+/* ---------- SOCIAL PROOF / WHO WE WORK WITH ---------- */
 function SocialProof() {
   const names = ["Al Manara Bistro", "Marina Dental", "Habibi Legal", "Pulse Fitness", "DIFC Advisory", "Olea & Co.", "JBR Hair Atelier", "Oryx Realty"];
   return (
-    <section className="bg-cream-deep border-y border-warm-border">
-      <div className="container-narrow py-6 flex flex-col md:flex-row items-center gap-4">
-        <p className="text-[11px] tracking-[0.25em] uppercase text-warm-brown whitespace-nowrap">
-          Trusted across Dubai · JBR · DIFC · Business Bay
-        </p>
-        <div className="flex-1 overflow-hidden edge-fade-x">
-          <div className="flex items-center gap-8 animate-scroll-left whitespace-nowrap">
-            {[...names, ...names].map((n, i) => (
-              <span key={i} className="flex items-center gap-8 font-display text-warm-brown text-lg italic">
-                {n} <span className="w-1 h-1 rounded-full bg-gold" />
-              </span>
-            ))}
+    <section className="bg-cream-deep border-y border-warm-border section-pad">
+      <div className="container-narrow grid lg:grid-cols-[1.05fr_1fr] gap-14 items-center">
+        <div className="space-y-6 reveal-left">
+          <p className="eyebrow">Who we work with</p>
+          <h2 className="font-display text-5xl md:text-7xl leading-[0.95] text-espresso font-medium tracking-tight">
+            Dubai businesses that want their website{" "}
+            <em className="text-gold font-light">actually working.</em>
+          </h2>
+          <p className="text-[15px] font-light text-warm-brown max-w-lg leading-relaxed">
+            Restaurants, clinics, law firms, gyms, salons, consultancies, retail brands.
+            If you have a real business, we'll build you a real growth engine.
+          </p>
+          <div className="overflow-hidden edge-fade-x pt-2">
+            <div className="flex items-center gap-8 animate-scroll-left whitespace-nowrap">
+              {[...names, ...names].map((n, i) => (
+                <span key={i} className="flex items-center gap-8 font-display text-warm-brown text-lg italic">
+                  {n} <span className="w-1 h-1 rounded-full bg-gold" />
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
+        <div className="reveal-right">
+          <LoopingLaptop />
+          <p className="mt-6 text-center text-[12px] tracking-[0.25em] uppercase text-warm-brown">
+            Every launch — 12 things we do so you don't have to.
+          </p>
         </div>
       </div>
     </section>
@@ -418,8 +430,8 @@ function FeaturedResult() {
               Yousef Khan · Owner, Al Manara Bistro
             </p>
           </div>
-          <Link to="/reviews" className="inline-flex items-center gap-2 text-gold text-[13px] hover:gap-3 transition-all">
-            Read more client reviews <ArrowRight className="w-4 h-4" />
+          <Link to="/services" className="inline-flex items-center gap-2 text-gold text-[13px] hover:gap-3 transition-all">
+            See how we build results like this <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>
@@ -428,80 +440,8 @@ function FeaturedResult() {
 }
 
 
-/* ---------- REVIEWS ---------- */
-const reviewSet = [
-  { q: "They rebuilt our site in a week and our enquiries doubled within the first month. I expected good. I got extraordinary.", n: "Layla Hassan", b: "Founder, JBR Hair Atelier", f: true },
-  { q: "We finally rank on the first page for our clinic. Three new patient bookings in the first week alone.", n: "Dr. Faisal Noor", b: "Marina Dental" },
-  { q: "Worth every dirham. The site looks luxury and it sells like it.", n: "Omar Saleh", b: "Oryx Realty" },
-  { q: "I've worked with three agencies in Dubai. This is the only one that understood the brief on the first call.", n: "Nadia Al-Rashid", b: "DIFC Advisory" },
-  { q: "Delivered in 6 days. Beautiful, fast, and our WhatsApp hasn't stopped.", n: "Tariq Mahmoud", b: "Pulse Fitness", f: true },
-  { q: "Honest, sharp, and proper craft. Rare combination.", n: "Sophie Laurent", b: "Olea & Co." },
-  { q: "We launched and bookings tripled in three weeks. I still can't quite believe it.", n: "Yousef Khan", b: "Al Manara Bistro" },
-  { q: "The strategy call alone was worth the engagement. They actually listen.", n: "Reem Al-Sayed", b: "Habibi Legal" },
-  { q: "Best web investment we've made. Period.", n: "Karim Boutros", b: "Boutros Group" },
-  { q: "From an outdated brochure site to a real growth engine. Couldn't recommend more highly.", n: "Aisha Mansour", b: "Maison Aisha" },
-];
+/* Reviews temporarily removed — will return with real client testimonials. */
 
-function Reviews() {
-  const row1 = reviewSet.slice(0, 5);
-  const row2 = reviewSet.slice(5);
-  return (
-    <section className="section-pad">
-      <div className="container-narrow text-center space-y-5 mb-14">
-        <p className="eyebrow">Reviews</p>
-        <h2 className="font-display text-4xl md:text-5xl text-espresso">
-          What our clients <em className="text-gold font-light">actually say.</em>
-        </h2>
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-3">
-          <div className="flex items-center gap-2">
-            <span className="font-display text-4xl text-espresso">4.9</span>
-            <div className="flex gap-0.5">
-              {[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-gold text-gold" />)}
-            </div>
-          </div>
-          <span className="w-px h-8 bg-warm-border" />
-          <span className="text-[13px] text-warm-brown">120+ happy clients</span>
-          <span className="w-px h-8 bg-warm-border" />
-          <span className="text-[13px] text-warm-brown">98% retention</span>
-        </div>
-      </div>
-
-      <div className="space-y-6 [--gap:1.5rem] group overflow-hidden">
-        <ReviewRow items={row1} dir="left" />
-        <ReviewRow items={row2} dir="right" />
-      </div>
-    </section>
-  );
-}
-
-function ReviewRow({ items, dir }: { items: typeof reviewSet; dir: "left" | "right" }) {
-  return (
-    <div className="overflow-hidden">
-      <div className={`flex gap-6 w-max ${dir === "left" ? "animate-scroll-left" : "animate-scroll-right"} group-hover:[animation-play-state:paused]`}>
-        {[...items, ...items].map((r, i) => <ReviewCard key={i} {...r} />)}
-      </div>
-    </div>
-  );
-}
-
-function ReviewCard({ q, n, b, f }: { q: string; n: string; b: string; f?: boolean }) {
-  return (
-    <div className={`relative w-[340px] flex-shrink-0 rounded-3xl border p-7 ${f ? "bg-espresso text-ivory border-espresso" : "bg-cream-soft border-warm-border text-espresso"}`}>
-      <Quote className={`absolute -top-2 left-5 w-14 h-14 ${f ? "text-ivory/10 fill-ivory/10" : "text-cream-deep fill-cream-deep"}`} />
-      <div className="relative">
-        <div className="flex gap-0.5 mb-3">
-          {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />)}
-        </div>
-        <p className={`font-display text-lg leading-snug italic ${f ? "text-ivory" : "text-espresso"}`}>
-          "{q}"
-        </p>
-        <div className="h-px bg-warm-border/30 my-5" />
-        <p className="text-[13px] font-medium">{n}</p>
-        <p className={`text-[12px] ${f ? "text-ivory/60" : "text-warm-brown"}`}>{b}</p>
-      </div>
-    </div>
-  );
-}
 
 /* ---------- FINAL CTA ---------- */
 function FinalCTA() {
@@ -528,7 +468,7 @@ function FinalCTA() {
           </Magnetic>
         </div>
         <p className="text-[12px] text-ivory/50">
-          We reply within 4 business hours. Based in Dubai.
+          We'll WhatsApp you back shortly — usually within a few business hours.
         </p>
       </div>
     </section>

@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, Check, Mail, Phone, MessageCircle, type LucideIcon } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import { submitLead } from "@/lib/api/leads.functions";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -9,7 +11,7 @@ export const Route = createFileRoute("/contact")({
       { title: "Contact — Book a free strategy call | Saints Studios" },
       { name: "description", content: "Book a free 30-minute strategy call with Saints Studios. No pitch. No pressure. Just an honest conversation about your Dubai business." },
       { property: "og:title", content: "Contact — Saints Studios" },
-      { property: "og:description", content: "Let's talk about what your website could be doing for you." },
+      { property: "og:description", content: "We'll WhatsApp you back shortly — usually within a few business hours." },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
@@ -50,8 +52,20 @@ function ContactPage() {
     setTimeout(goNext, 180);
   };
 
+  const submitLeadFn = useServerFn(submitLead);
+
   const submit = () => {
     if (!answers.name || !answers.whatsapp || !answers.businessName) return;
+    // Fire-and-forget append to Google Sheet — never blocks WhatsApp flow.
+    submitLeadFn({ data: {
+      name: answers.name,
+      businessName: answers.businessName,
+      businessAndIndustry: answers.businessAndIndustry,
+      need: answers.need,
+      websiteStatus: answers.websiteStatus,
+      whatsapp: answers.whatsapp,
+    } }).catch((err) => console.error("[submitLead] failed", err));
+
     const msg =
       `New strategy call request from Saints Studios site\n\n` +
       `Name: ${answers.name}\n` +
@@ -75,8 +89,8 @@ function ContactPage() {
                 Let's talk about what your website could be doing <em className="text-gold font-light">for you.</em>
               </h1>
               <p className="text-[16px] font-light text-warm-brown max-w-xl">
-                Answer 4 quick questions and we'll WhatsApp you within 4 business hours.
-                No pitch. No pressure.
+                Answer 4 quick questions and we'll WhatsApp you back shortly — usually
+                within a few business hours. No pitch. No pressure.
               </p>
             </div>
 
@@ -102,9 +116,11 @@ function ContactPage() {
                     {step === 2 && (
                       <StepChoice
                         title="What does your business need?"
-                        options={["New website", "Website redesign", "SEO / more traffic", "Not sure yet"]}
+                        options={["New website", "Website redesign", "SEO / more traffic", "Not sure yet", "Other"]}
                         selected={answers.need}
                         onPick={(v) => pick("need", v)}
+                        allowOtherText
+                        otherLabel="Other"
                       />
                     )}
                     {step === 3 && (
@@ -142,7 +158,7 @@ function ContactPage() {
               <ContactItem icon={Phone} label="+971 50 761 9289" />
               <ContactItem icon={MessageCircle} label="WhatsApp us (preferred)" />
               <p className="text-[12px] text-ivory/50 pt-2 border-t border-ivory/10">
-                Business Bay, Dubai. Replies within 4 business hours.
+                We'll WhatsApp you back shortly — usually within a few business hours.
               </p>
             </div>
           </aside>
@@ -208,41 +224,75 @@ function Step1({
 }
 
 function StepChoice({
-  title, options, selected, onPick,
-}: { title: string; options: string[]; selected: string; onPick: (v: string) => void }) {
+  title, options, selected, onPick, allowOtherText, otherLabel,
+}: {
+  title: string; options: string[]; selected: string; onPick: (v: string) => void;
+  allowOtherText?: boolean; otherLabel?: string;
+}) {
+  const [otherText, setOtherText] = useState("");
+  const isOtherActive = allowOtherText && otherLabel && selected.startsWith(`${otherLabel}: `);
   return (
     <div className="space-y-6">
       <h2 className="font-display text-2xl md:text-3xl text-espresso leading-snug">{title}</h2>
       <div className="grid gap-3">
         {options.map((opt) => {
-          const active = selected === opt;
+          const isOther = allowOtherText && opt === otherLabel;
+          const active = isOther ? !!isOtherActive : selected === opt;
           return (
-            <button
-              key={opt}
-              type="button"
-              onClick={() => onPick(opt)}
-              className={[
-                "group w-full text-left rounded-2xl px-5 py-5 md:py-6 text-[16px] md:text-[17px]",
-                "border transition-all duration-200",
-                "bg-ivory/70 hover:bg-ivory",
-                active
-                  ? "border-gold shadow-[0_0_0_2px_rgba(201,151,58,0.25)] text-espresso"
-                  : "border-warm-border hover:border-gold/60 text-espresso",
-              ].join(" ")}
-            >
-              <span className="flex items-center justify-between gap-4">
-                <span className="font-light">{opt}</span>
-                <span
-                  className={[
-                    "w-6 h-6 rounded-full border flex items-center justify-center transition-all",
-                    active ? "border-gold bg-gold text-ivory" : "border-warm-border/70 text-transparent group-hover:border-gold/60",
-                  ].join(" ")}
-                  aria-hidden
-                >
-                  <Check className="w-3.5 h-3.5" />
+            <div key={opt}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (isOther) return; // handled by input below
+                  onPick(opt);
+                }}
+                className={[
+                  "group w-full text-left rounded-2xl px-5 py-5 md:py-6 text-[16px] md:text-[17px]",
+                  "border transition-all duration-200",
+                  "bg-ivory/70 hover:bg-ivory",
+                  active
+                    ? "border-gold shadow-[0_0_0_2px_rgba(201,151,58,0.25)] text-espresso"
+                    : "border-warm-border hover:border-gold/60 text-espresso",
+                ].join(" ")}
+              >
+                <span className="flex items-center justify-between gap-4">
+                  <span className="font-light">{opt}</span>
+                  <span
+                    className={[
+                      "w-6 h-6 rounded-full border flex items-center justify-center transition-all",
+                      active ? "border-gold bg-gold text-ivory" : "border-warm-border/70 text-transparent group-hover:border-gold/60",
+                    ].join(" ")}
+                    aria-hidden
+                  >
+                    <Check className="w-3.5 h-3.5" />
+                  </span>
                 </span>
-              </span>
-            </button>
+              </button>
+              {isOther && (
+                <div className="mt-2 flex gap-2">
+                  <input
+                    value={otherText}
+                    onChange={(e) => setOtherText(e.target.value)}
+                    placeholder="Tell us in a few words…"
+                    className="flex-1 bg-ivory/70 border border-warm-border rounded-xl px-4 py-3 text-[15px] outline-none focus:border-gold transition-colors"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && otherText.trim()) {
+                        e.preventDefault();
+                        onPick(`${otherLabel}: ${otherText.trim()}`);
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => otherText.trim() && onPick(`${otherLabel}: ${otherText.trim()}`)}
+                    disabled={!otherText.trim()}
+                    className="btn-primary px-4 disabled:opacity-40 disabled:cursor-not-allowed"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
+            </div>
           );
         })}
       </div>

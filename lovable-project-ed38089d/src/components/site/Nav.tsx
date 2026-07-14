@@ -4,8 +4,7 @@ import { Menu, X, MessageCircle } from "lucide-react";
 
 const links = [
   { to: "/services", label: "Services" },
-  { to: "/reviews", label: "Reviews" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "Why Saints?" },
   { to: "/journal", label: "Journal" },
   { to: "/contact", label: "Contact" },
 ] as const;

@@ -32,8 +32,7 @@ export function Footer() {
         <FooterCol
           title="Studio"
           items={[
-            ["Reviews", "/reviews"],
-            ["About", "/about"],
+            ["Why Saints?", "/about"],
             ["Journal", "/journal"],
             ["Contact", "/contact"],
           ]}
@@ -60,9 +59,8 @@ export function Footer() {
           >
             WhatsApp us
           </a>
-          <p className="text-ivory/60">Business Bay, Dubai, UAE.</p>
           <p className="text-ivory/50 text-[12px]">
-            Replies within 4 business hours.
+            We'll WhatsApp you back shortly — usually within a few business hours.
           </p>
         </div>
       </div>
