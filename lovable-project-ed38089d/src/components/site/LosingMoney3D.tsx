@@ -2,13 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { Zap, Smartphone, Search, Link2 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { TickingClock } from "./Anims";
+import { Aurora, GlassOrbs } from "./FX";
+import { Particles } from "./MagicFX";
+
 
 const REASONS = [
   {
     icon: Zap,
     num: "01",
     title: "Too slow to keep anyone.",
-    body: "If your site takes more than 3 seconds to load, 53% of visitors leave. We rebuild yours to load under 2 seconds — even on patchy 4G.",
+    body: "If your site takes more than 3 seconds to load, 53% of visitors leave. We rebuild yours to load under 2 seconds , even on patchy 4G.",
     stat: "53% bounce",
   },
   {
@@ -29,7 +32,7 @@ const REASONS = [
     icon: Link2,
     num: "04",
     title: "No lead capture.",
-    body: "Visitors leave with no way to follow up. Forms, WhatsApp, live chat — every interested visitor becomes a contact.",
+    body: "Visitors leave with no way to follow up. Forms, WhatsApp, live chat , every interested visitor becomes a contact.",
     stat: "5× enquiries",
   },
 ];
@@ -90,7 +93,7 @@ export function LosingMoney3D() {
 
     let raf = 0;
     // Throttle setState by delta: bigger delta on mobile = fewer re-renders
-    const minDelta = isMobile ? 0.008 : 0.003;
+    const minDelta = isMobile ? 0.002 : 0.0005;
     const compute = () => {
       raf = 0;
       const node = wrapRef.current;
@@ -165,13 +168,25 @@ export function LosingMoney3D() {
       aria-label="Your website is losing you money"
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden">
+        {/* Background motion layers , solid amount of movement behind the laptop */}
+        <div className="absolute inset-0 pointer-events-none opacity-70">
+          <Aurora />
+        </div>
+        <div className="absolute inset-0 pointer-events-none">
+          <Particles quantity={isMobile ? 40 : 80} color="#c9973a" />
+        </div>
+        {!isMobile && (
+          <div className="absolute inset-0 pointer-events-none">
+            <GlassOrbs count={5} />
+          </div>
+        )}
         {/* Ambient glow behind laptop */}
         <div
           aria-hidden
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(60vw 50vh at 50% 55%, rgba(201,151,58,0.18), transparent 65%)",
+              "radial-gradient(60vw 50vh at 50% 55%, rgba(201,151,58,0.22), transparent 65%)",
           }}
         />
 
@@ -184,17 +199,17 @@ export function LosingMoney3D() {
           </h2>
         </div>
 
-        {/* Floating laptop stage */}
+        {/* Floating laptop stage , no CSS transition so it locks to scroll frame */}
         <div
           className="absolute inset-0 flex items-center justify-center z-0"
           style={{
             transform: `translate3d(${drift}vw, ${(1 - laptopLift) * 30}px, 0)`,
-            transition: "transform 60ms linear",
             willChange: "transform",
           }}
         >
           <Laptop progress={progress} tilt={tilt} revealT={revealT} isMobile={isMobile} />
         </div>
+
 
         {/* Reason cards (liquid glass) */}
         {REASONS.map((r, i) => {
@@ -288,7 +303,7 @@ function Laptop({
   revealT: number;
   isMobile: boolean;
 }) {
-  // Quadrant activation levels (0..1) — each lights up in its window
+  // Quadrant activation levels (0..1) , each lights up in its window
   const quads = QUADRANT_RANGES.map(([a, b]) =>
     easeInOut(remap(progress, a, a + (b - a) * 0.6))
   );

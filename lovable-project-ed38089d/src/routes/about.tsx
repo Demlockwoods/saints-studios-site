@@ -10,23 +10,23 @@ import ShinyText from "@/components/reactbits/ShinyText";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Why Saints? — We care whether your phone rings | Saints Studios" },
+      { title: "Why Saints? , We care whether your phone rings | Saints Studios" },
       { name: "description", content: "Saints Studios was founded by Domekveer Chopra to fix one thing: Dubai businesses with great offers and invisible websites. Speed, transparency, the 7-day guarantee." },
       { name: "keywords", content: "Why Saints Studios, Domekveer Chopra, Dubai web design studio, 7 day website Dubai" },
-      { property: "og:title", content: "Why Saints? — Saints Studios" },
-      { property: "og:description", content: "A Dubai growth studio built around speed, transparency, and outcomes — not awards." },
-      { property: "og:url", content: "/about" },
+      { property: "og:title", content: "Why Saints? , Saints Studios" },
+      { property: "og:description", content: "A Dubai growth studio built around speed, transparency, and outcomes , not awards." },
+      { property: "og:url", content: "https://saints-studios.com/about" },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://saints-studios.com/about" }],
   }),
   component: AboutPage,
 });
 
 function AboutPage() {
   const differentiators = [
-    { n: "01", t: "Speed", b: "We deliver in 7 days. Not 6–8 weeks. Not 'it depends on revisions.' Seven days from receiving your assets to a live, optimised, Google-indexed website.", Icon: Zap, kpi: "7d" },
+    { n: "01", t: "Speed", b: "We deliver in 7 days. Not 6-8 weeks. Not 'it depends on revisions.' Seven days from receiving your assets to a live, optimised, Google-indexed website.", Icon: Zap, kpi: "7d" },
     { n: "02", t: "Transparency", b: "Our process is documented and you see daily updates during the build. You know exactly what you're getting before you sign anything. No surprises. Ever.", Icon: Eye, kpi: "100%" },
-    { n: "03", t: "The Guarantee", b: "Miss the 7-day deadline through any fault of ours? Your first month of retainer is free. We put it in writing because we want you safe — not just hopeful.", Icon: Shield, kpi: "0" },
+    { n: "03", t: "Ownership", b: "You own the site, the domain, the analytics, everything. No lock-in, no hostage situations. We hand over full access on day one and you keep it forever.", Icon: Shield, kpi: "100%" },
   ];
 
   const rows = [
@@ -36,8 +36,9 @@ function AboutPage() {
     ["Transparent process", "yes", "no", "partial"],
     ["Post-launch support", "yes", "partial", "no"],
     ["Monthly reporting", "yes", "yes", "no"],
-    ["Guaranteed delivery", "yes", "no", "no"],
+    ["Full ownership handover", "yes", "no", "partial"],
   ] as const;
+
 
   return (
     <SiteLayout backdrop="about">
@@ -78,7 +79,7 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* WHAT WE DO — "Beautiful is a requirement, not a goal" */}
+      {/* WHAT WE DO , "Beautiful is a requirement, not a goal" */}
       <section className="relative section-pad bg-cream-soft border-y border-warm-border overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-40">
           <Aurora />
@@ -89,7 +90,7 @@ function AboutPage() {
             <h2 className="font-display text-4xl md:text-6xl text-espresso leading-[1.05]">
               Beautiful is a{" "}
               <em className="text-gold font-light not-italic border-b border-gold/60 pb-1">requirement</em>
-              {" "}— not the goal.
+              {" "}, not the goal.
             </h2>
             <p className="text-[15px] font-light text-warm-brown max-w-2xl mx-auto leading-relaxed">
               A great-looking website that generates no leads is a very expensive
@@ -135,7 +136,7 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* WHO WE WORK WITH — with looping laptop */}
+      {/* WHO WE WORK WITH , with looping laptop */}
       <section className="section-pad">
         <div className="container-narrow grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
           <div className="space-y-5 text-[15px] font-light text-warm-brown leading-relaxed reveal-left">
@@ -146,7 +147,7 @@ function AboutPage() {
             <p>
               Clinics. Restaurants. Law firms. Consultancies. Gyms. Retail brands.
               Businesses across Dubai, Abu Dhabi, and the wider Emirates that have
-              something genuinely worth buying — and a website that isn't
+              something genuinely worth buying , and a website that isn't
               communicating that effectively.
             </p>
             <p>
@@ -161,13 +162,13 @@ function AboutPage() {
           <div className="reveal-right">
             <LoopingLaptop />
             <p className="mt-6 text-center text-[12px] tracking-[0.25em] uppercase text-warm-brown">
-              Everything we do on your site — while you run your business.
+              Everything we do on your site , while you run your business.
             </p>
           </div>
         </div>
       </section>
 
-      {/* HOW WE'RE DIFFERENT — richer visual */}
+      {/* HOW WE'RE DIFFERENT , richer visual */}
       <section className="relative section-pad bg-espresso text-ivory overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-70">
           <Particles quantity={40} color="#C9973A" />
@@ -242,7 +243,7 @@ function AboutPage() {
               restaurants with food worth travelling for, buried on page four of
               Google. Clinics with world-class practitioners losing bookings because
               their site doesn't load on mobile. Consultancies with genuine expertise
-              looking unprofessional online — and wondering why inbound leads have
+              looking unprofessional online , and wondering why inbound leads have
               dried up.
             </p>
             <p>
@@ -258,7 +259,7 @@ function AboutPage() {
               client's phone ring more?</em>
             </p>
             <p>
-              If the answer is yes, it stays. If it isn't — it changes.
+              If the answer is yes, it stays. If it isn't , it changes.
             </p>
             <blockquote className="border-l-2 border-gold pl-5 mt-6">
               <p className="font-display italic text-2xl text-espresso">
@@ -315,7 +316,7 @@ function AboutPage() {
             Let's make your phone ring.
           </h2>
           <p className="text-[15px] font-light text-ivory/70">
-            Book a free 30-minute strategy call. We'll tell you exactly what to fix first — even if you don't end up working with us.
+            Book a free 30-minute strategy call. We'll tell you exactly what to fix first , even if you don't end up working with us.
           </p>
           <Link to="/contact" className="btn-gold mt-2 inline-flex">
             Book your free call

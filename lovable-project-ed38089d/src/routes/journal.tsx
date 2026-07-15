@@ -6,14 +6,14 @@ import { posts } from "@/lib/journal-posts";
 export const Route = createFileRoute("/journal")({
   head: () => ({
     meta: [
-      { title: "Journal — Insights for Dubai businesses | Saints Studios" },
+      { title: "Journal , Insights for Dubai businesses | Saints Studios" },
       { name: "description", content: "Practical advice on web design, SEO, lead generation, and online growth for Dubai businesses. Written by Saints Studios." },
       { name: "keywords", content: "Dubai web design blog, Dubai SEO advice, lead generation Dubai, restaurant marketing Dubai, Core Web Vitals, Google Business Profile Dubai" },
-      { property: "og:title", content: "Journal — Saints Studios" },
+      { property: "og:title", content: "Journal , Saints Studios" },
       { property: "og:description", content: "Practical advice on web design, SEO, and lead generation for Dubai businesses." },
-      { property: "og:url", content: "/journal" },
+      { property: "og:url", content: "https://saints-studios.com/journal" },
     ],
-    links: [{ rel: "canonical", href: "/journal" }],
+    links: [{ rel: "canonical", href: "https://saints-studios.com/journal" }],
   }),
   component: JournalPage,
 });
@@ -29,7 +29,7 @@ function JournalPage() {
             Insights for Dubai businesses that take their <em className="text-gold font-light">online presence</em> seriously.
           </h1>
           <p className="text-[15px] font-light text-warm-brown">
-            Practical, no-fluff articles on SEO, web design, and lead generation —
+            Practical, no-fluff articles on SEO, web design, and lead generation ,
             written from real client work in Dubai.
           </p>
         </div>

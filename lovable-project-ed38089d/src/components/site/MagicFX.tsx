@@ -170,7 +170,7 @@ export function Particles({
     let running = false;
     const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2);
     const parent = canvas.parentElement!;
-    const effectiveQty = isMobile ? Math.min(18, Math.round(quantity / 2)) : quantity;
+    const effectiveQty = isMobile ? Math.min(35, Math.round(quantity * 0.55)) : quantity;
     type P = { x: number; y: number; vx: number; vy: number; r: number; a: number };
     let particles: P[] = [];
 
@@ -184,10 +184,10 @@ export function Particles({
       particles = Array.from({ length: effectiveQty }).map(() => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.2,
-        vy: (Math.random() - 0.5) * 0.2,
-        r: Math.random() * 1.8 + 0.6,
-        a: Math.random() * 0.55 + 0.4,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 2.6 + 0.9,
+        a: Math.random() * 0.55 + 0.5,
       }));
     };
 
@@ -204,10 +204,11 @@ export function Particles({
         if (p.y > height) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        if (!isMobile) ctx.shadowBlur = 8;
+        if (!isMobile) ctx.shadowBlur = 12;
         ctx.fillStyle = color + Math.floor(p.a * 255).toString(16).padStart(2, "0");
         ctx.fill();
       }
+
       raf = requestAnimationFrame(draw);
     };
 

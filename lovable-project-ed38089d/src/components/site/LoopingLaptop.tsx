@@ -13,7 +13,7 @@ const TASKS = [
   "WhatsApp click-to-chat",
   "Analytics + conversion tracking",
   "Blog engine + CMS",
-  "Speed audit — 98/100",
+  "Speed audit , 98/100",
   "Booking system connected",
   "Live chat installed",
   "Monthly report scheduled",

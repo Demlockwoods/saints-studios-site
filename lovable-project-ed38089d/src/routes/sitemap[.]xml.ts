@@ -2,13 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { posts } from "@/lib/journal-posts";
 
-const BASE_URL = "https://saintsstudios.lovable.app";
+const BASE_URL = "https://saints-studios.com";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const paths = ["/", "/services", "/about", "/journal", "/contact"];
+        const paths = ["/", "/services", "/about", "/journal", "/contact", "/terms"];
         const journals = posts.map((p) => `/journal/${p.slug}`);
         const all = [...paths, ...journals];
         const urls = all.map(p =>

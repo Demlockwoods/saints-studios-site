@@ -1,15 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  Zap, Smartphone, Search, Link2,
-  ArrowRight, MessageCircle, Quote, ChevronLeft, ChevronRight,
-} from "lucide-react";
-import { useRef } from "react";
+import { ArrowRight, MessageCircle, Check, X, Zap, Eye, Shield } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import { SpinStar, TickingClock, SwingingShield, HeroLeadsDashboard } from "@/components/site/Anims";
+import { SpinStar, TickingClock, HeroLeadsDashboard } from "@/components/site/Anims";
 import { Meteors, AnimatedGridPattern, Particles } from "@/components/site/MagicFX";
-import { TiltCard, Magnetic, CountUp, Aurora, Ripples, GlassOrbs, Parallax } from "@/components/site/FX";
+import { TiltCard, Magnetic, Aurora, Ripples, GlassOrbs, Parallax } from "@/components/site/FX";
 import { LosingMoney3D } from "@/components/site/LosingMoney3D";
-import { StickyGradientSection } from "@/components/site/StickyGradientSection";
 import { LoopingLaptop } from "@/components/site/LoopingLaptop";
 import BlurText from "@/components/reactbits/BlurText";
 import ShinyText from "@/components/reactbits/ShinyText";
@@ -20,13 +15,13 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Saints Studios | Dubai web design that makes your phone ring" },
-      { name: "description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days. Money-back guaranteed." },
+      { name: "description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days." },
       { name: "keywords", content: "Dubai web design, web design Dubai, Dubai SEO, lead generation Dubai, website Dubai, Saints Studios" },
       { property: "og:title", content: "Saints Studios | Dubai web design that makes your phone ring" },
-      { property: "og:description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days. Money-back guaranteed." },
-      { property: "og:url", content: "/" },
+      { property: "og:description", content: "Dubai's growth-focused web studio. Beautiful, fast websites engineered to convert. Live in 7 days." },
+      { property: "og:url", content: "https://saints-studios.com/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://saints-studios.com/" }],
     scripts: [{
       type: "application/ld+json",
       children: JSON.stringify({
@@ -35,7 +30,7 @@ export const Route = createFileRoute("/")({
         name: "Saints Studios",
         description: "Premium Dubai web design and digital growth studio.",
         areaServed: "Dubai, UAE",
-        address: { "@type": "PostalAddress", addressLocality: "Business Bay", addressRegion: "Dubai", addressCountry: "AE" },
+        address: { "@type": "PostalAddress", addressLocality: "Dubai", addressRegion: "Dubai", addressCountry: "AE" },
         telephone: "+971507619289",
       }),
     }],
@@ -47,17 +42,10 @@ function Home() {
   return (
     <SiteLayout backdrop="landing">
       <Hero />
-      <SocialProof />
+      <PhoneRingsSection />
       <LosingMoney3D />
-      <StickyGradientSection
-        from="hsl(24, 62%, 74%)"
-        to="hsl(36, 55%, 90%)"
-        accent="#8B3A3A"
-      >
-        <Services />
-      </StickyGradientSection>
+      <WhoWeWorkWith />
       <Process />
-      <FeaturedResult />
       <FinalCTA />
     </SiteLayout>
   );
@@ -67,14 +55,17 @@ function Home() {
 function Hero() {
   return (
     <section className="relative hero-pattern overflow-hidden">
-      <Parallax speed={0.3} className="absolute inset-0 pointer-events-none">
+      <Parallax speed={0.25} className="absolute inset-0 pointer-events-none">
         <Aurora />
       </Parallax>
-      <Parallax speed={0.5} className="absolute inset-0 pointer-events-none">
-        <Particles quantity={60} />
+      <Parallax speed={0.45} className="absolute inset-0 pointer-events-none">
+        <Particles quantity={120} />
+      </Parallax>
+      <Parallax speed={0.55} className="absolute inset-0 pointer-events-none">
+        <Particles quantity={70} color="#e2b672" />
       </Parallax>
       <Parallax speed={0.65} className="absolute inset-0 pointer-events-none">
-        <GlassOrbs count={5} />
+        <GlassOrbs count={7} />
       </Parallax>
       <div className="relative container-narrow min-h-[calc(100vh-72px)] grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center py-20">
         <div className="space-y-8">
@@ -83,30 +74,12 @@ function Hero() {
             Dubai's growth-focused web studio
           </p>
           <h1 className="font-display text-[48px] md:text-[72px] leading-[1.05] text-espresso">
-            <BlurText
-              text="We build websites that bring you"
-              className="inline"
-              animateBy="words"
-              direction="top"
-              delay={90}
-            />{" "}
+            <BlurText text="We build websites that bring you" className="inline" animateBy="words" direction="top" delay={90} />{" "}
             <em className="font-light text-gold inline-block">
-              <ShinyText
-                text="customers."
-                color="#C9973A"
-                shineColor="#FFF4D6"
-                speed={3}
-                spread={90}
-              />
+              <ShinyText text="customers." color="#C9973A" shineColor="#FFF4D6" speed={3} spread={90} />
             </em>
             <br />
-            <BlurText
-              text="Not just clicks."
-              className="inline"
-              animateBy="words"
-              direction="top"
-              delay={110}
-            />
+            <BlurText text="Not just clicks." className="inline" animateBy="words" direction="top" delay={110} />
           </h1>
           <p className="text-[16px] font-light text-warm-brown max-w-xl leading-relaxed reveal">
             Done-for-you web design for Dubai businesses that want more visibility,
@@ -128,8 +101,6 @@ function Hero() {
             <span className="flex items-center gap-2"><SpinStar className="w-4 h-4" /> 5-star rated</span>
             <span className="w-px h-4 bg-warm-border hidden sm:block" />
             <span className="flex items-center gap-2"><TickingClock size={22} /> 7-day delivery</span>
-            <span className="w-px h-4 bg-warm-border hidden sm:block" />
-            <span className="flex items-center gap-2"><SwingingShield className="w-4 h-4" /> Money-back guarantee</span>
           </div>
         </div>
 
@@ -141,195 +112,108 @@ function Hero() {
   );
 }
 
-function TrustItem({ icon, label }: { icon: React.ReactNode; label: string }) {
-  return <span className="flex items-center gap-2">{icon}{label}</span>;
-}
-
-function MockSite({ label, before }: { label: string; before?: boolean }) {
+/* ---------- WHY SAINTS: WE DON'T CARE ABOUT DESIGN AWARDS ---------- */
+function PhoneRingsSection() {
   return (
-    <div className="rounded-xl overflow-hidden border border-warm-border bg-white">
-      <div className="flex items-center gap-1.5 px-3 py-2 bg-cream-deep border-b border-warm-border">
-        <span className="w-2 h-2 rounded-full bg-[#E47C66]" />
-        <span className="w-2 h-2 rounded-full bg-[#E8B84A]" />
-        <span className="w-2 h-2 rounded-full bg-[#87A878]" />
+    <section className="relative section-pad hero-pattern overflow-hidden border-y border-warm-border">
+      <div className="absolute inset-0 pointer-events-none opacity-90">
+        <Aurora />
       </div>
-      {before ? (
-        <div className="p-3 space-y-2 text-[8px] bg-[#f1efe8]">
-          <div className="h-3 w-1/2 bg-gray-300" />
-          <div className="h-2 w-full bg-gray-200" />
-          <div className="h-2 w-4/5 bg-gray-200" />
-          <div className="h-12 w-full bg-gray-300 mt-2" />
-          <div className="h-2 w-2/3 bg-gray-200" />
-        </div>
-      ) : (
-        <div className="p-3 space-y-2 bg-cream">
-          <div className="h-2.5 w-1/3 bg-gold/60 rounded-full" />
-          <div className="h-3 w-3/4 bg-espresso rounded" />
-          <div className="h-1.5 w-full bg-warm-border rounded" />
-          <div className="h-1.5 w-5/6 bg-warm-border rounded" />
-          <div className="flex gap-1.5 mt-2">
-            <div className="h-4 w-12 bg-espresso rounded-full" />
-            <div className="h-4 w-10 border border-warm-border rounded-full" />
-          </div>
-        </div>
-      )}
-      <div className="flex items-center gap-1.5 px-3 py-1.5 text-[10px] text-warm-brown border-t border-warm-border">
-        <span className={`w-1.5 h-1.5 rounded-full ${before ? "bg-[#E47C66]" : "bg-[#87A878]"}`} />
-        {label}
+      <div className="absolute inset-0 pointer-events-none">
+        <Particles quantity={60} color="#c9973a" />
       </div>
-    </div>
+      <div className="absolute inset-0 pointer-events-none">
+        <GlassOrbs count={4} />
+      </div>
+      <div className="relative container-narrow max-w-4xl text-center mx-auto space-y-7 animate-fade-in">
+        <p className="eyebrow flex items-center justify-center gap-3">
+          <span className="w-8 h-px bg-gold" /> Why Saints? <span className="w-8 h-px bg-gold" />
+        </p>
+        <h2 className="font-display text-5xl md:text-7xl text-espresso leading-[1.02]">
+          <BlurText text="We don't care about design awards." className="inline" animateBy="words" direction="top" delay={80} />
+          <br />
+          <span className="text-warm-brown">We care about whether </span>
+          <em className="text-gold font-light">
+            <ShinyText text="your phone rings." color="#C9973A" shineColor="#FFF4D6" speed={3} spread={80} />
+          </em>
+        </h2>
+        <p className="text-[16px] font-light text-warm-brown italic max-w-2xl mx-auto leading-relaxed">
+          That's the only metric that matters to us. Not trophies. Not the approval
+          of other designers. Whether your website is generating real enquiries from
+          real people who want to spend money with your business.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto text-left pt-6">
+          <TiltCard className="bg-cream border border-warm-border rounded-3xl p-8 md:p-10 group">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-10 rounded-full border border-warm-border flex items-center justify-center text-warm-brown">
+                <X className="w-4 h-4" />
+              </span>
+              <p className="text-[11px] tracking-[0.25em] uppercase text-warm-brown">Most agencies</p>
+            </div>
+            <h3 className="font-display text-2xl text-espresso mb-3">Sell you a portfolio.</h3>
+            <ul className="space-y-2.5 text-[14px] text-warm-brown font-light">
+              <li>Pixel-perfect layouts, no strategy.</li>
+              <li>Six weeks, three revisions, no numbers.</li>
+              <li>You get a compliment. Not a customer.</li>
+            </ul>
+          </TiltCard>
+          <TiltCard className="bg-espresso text-ivory border border-gold/40 rounded-3xl p-8 md:p-10 shadow-[0_30px_80px_-40px_rgba(44,32,24,0.5)]">
+            <div className="flex items-center gap-3 mb-5">
+              <span className="w-10 h-10 rounded-full bg-gold text-ivory flex items-center justify-center">
+                <Check className="w-4 h-4" strokeWidth={3} />
+              </span>
+              <p className="text-[11px] tracking-[0.25em] uppercase text-gold">Saints Studios</p>
+            </div>
+            <h3 className="font-display text-2xl text-ivory mb-3">Engineer a growth machine.</h3>
+            <ul className="space-y-2.5 text-[14px] text-ivory/80 font-light">
+              <li>Every section built around a behaviour.</li>
+              <li>7-day delivery. Measurable from day one.</li>
+              <li>You get a phone that rings. Not a trophy.</li>
+            </ul>
+          </TiltCard>
+        </div>
+      </div>
+    </section>
   );
 }
 
-/* ---------- SOCIAL PROOF / WHO WE WORK WITH ---------- */
-function SocialProof() {
-  const names = ["Al Manara Bistro", "Marina Dental", "Habibi Legal", "Pulse Fitness", "DIFC Advisory", "Olea & Co.", "JBR Hair Atelier", "Oryx Realty"];
+/* ---------- WHO WE WORK WITH (moved from about, placed after 3D laptop) ---------- */
+function WhoWeWorkWith() {
   return (
-    <section className="bg-cream-deep border-y border-warm-border section-pad">
-      <div className="container-narrow grid lg:grid-cols-[1.05fr_1fr] gap-14 items-center">
-        <div className="space-y-6 reveal-left">
+    <section className="relative section-pad overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-60">
+        <Particles quantity={50} color="#c9973a" />
+      </div>
+      <div className="absolute inset-0 pointer-events-none">
+        <GlassOrbs count={4} />
+      </div>
+      <div className="relative container-narrow grid lg:grid-cols-[1.05fr_1fr] gap-16 items-center">
+        <div className="space-y-5 text-[15px] font-light text-warm-brown leading-relaxed reveal-left">
           <p className="eyebrow">Who we work with</p>
-          <h2 className="font-display text-5xl md:text-7xl leading-[0.95] text-espresso font-medium tracking-tight">
-            Dubai businesses that want their website{" "}
-            <em className="text-gold font-light">actually working.</em>
+          <h2 className="font-display text-5xl md:text-6xl text-espresso font-medium leading-[0.98]">
+            Business owners. <em className="text-gold font-light">Not marketing departments.</em>
           </h2>
-          <p className="text-[15px] font-light text-warm-brown max-w-lg leading-relaxed">
-            Restaurants, clinics, law firms, gyms, salons, consultancies, retail brands.
-            If you have a real business, we'll build you a real growth engine.
+          <p>
+            Clinics. Restaurants. Law firms. Consultancies. Gyms. Retail brands.
+            Businesses across Dubai, Abu Dhabi, and the wider Emirates that have
+            something genuinely worth buying, and a website that isn't communicating
+            that effectively.
           </p>
-          <div className="overflow-hidden edge-fade-x pt-2">
-            <div className="flex items-center gap-8 animate-scroll-left whitespace-nowrap">
-              {[...names, ...names].map((n, i) => (
-                <span key={i} className="flex items-center gap-8 font-display text-warm-brown text-lg italic">
-                  {n} <span className="w-1 h-1 rounded-full bg-gold" />
-                </span>
-              ))}
-            </div>
-          </div>
+          <p>
+            Our clients don't have time to learn SEO or read about Core Web Vitals.
+            They need someone they trust to handle all of it, report back clearly,
+            and prove the investment is working.
+          </p>
+          <p className="font-display italic text-2xl text-espresso pt-2">
+            That's exactly what we do.
+          </p>
         </div>
         <div className="reveal-right">
           <LoopingLaptop />
           <p className="mt-6 text-center text-[12px] tracking-[0.25em] uppercase text-warm-brown">
-            Every launch — 12 things we do so you don't have to.
+            Everything we do on your site, while you run your business.
           </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- PROBLEM ---------- */
-function Problem() {
-  const cards = [
-    { icon: Zap, num: "01", title: "Too slow to keep anyone.", body: "If your site takes more than 3 seconds to load, 53% of visitors leave before seeing a word. We rebuild yours to load under 2 seconds — on mobile, on patchy 4G, on a Friday night.", stat: "53% bounce" },
-    { icon: Smartphone, num: "02", title: "Invisible on mobile.", body: "Over 70% of your traffic is on a phone. A non-responsive site loses them all. We design mobile-first, then scale up to desktop — never the other way around.", stat: "70% on mobile" },
-    { icon: Search, num: "03", title: "Buried on Google.", body: "If you're not on page one, you're not in the conversation. We build every site with on-page SEO, local schema, and a Google Business Profile that actually shows up.", stat: "Page 1 in 90 days" },
-    { icon: Link2, num: "04", title: "No lead capture.", body: "Visitors come and leave with no way to follow up. We add forms, WhatsApp, live chat, and lead magnets — so every interested visitor becomes a contact.", stat: "Up to 5× enquiries" },
-  ];
-  const scroller = useRef<HTMLDivElement>(null);
-  const scroll = (dir: 1 | -1) => {
-    const el = scroller.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * (el.clientWidth * 0.8), behavior: "smooth" });
-  };
-
-  return (
-    <section className="section-pad overflow-hidden">
-      <div className="container-narrow text-center max-w-3xl mx-auto space-y-6">
-        <p className="eyebrow">The problem · swipe →</p>
-        <h2 className="font-display text-4xl md:text-5xl text-espresso">
-          Your website is losing you money. <em className="text-gold font-light">Every single day.</em>
-        </h2>
-        <p className="text-[15px] font-light text-warm-brown leading-relaxed">
-          Most Dubai businesses have a website that exists — but doesn't work.
-          Spin the wheel to see where it's leaking customers.
-        </p>
-      </div>
-
-      <div className="relative mt-14">
-        <div
-          ref={scroller}
-          className="scroll-snap-x flex gap-6 overflow-x-auto pb-6 px-6 md:px-[max(1.5rem,calc((100vw-1200px)/2))]"
-        >
-          {cards.map(({ icon: Icon, num, title, body, stat }) => (
-            <TiltCard
-              key={title}
-              className="snap-center-item flex-shrink-0 w-[85vw] md:w-[460px] bg-cream-soft border border-warm-border rounded-3xl hover:border-gold transition-colors group sheen"
-            >
-              <div className="p-8">
-                <div className="flex items-start justify-between mb-6">
-                  <span className="font-display text-5xl text-warm-border group-hover:text-gold transition-colors">{num}</span>
-                  <span className="w-12 h-12 rounded-full bg-espresso text-gold flex items-center justify-center group-hover:rotate-12 transition-transform">
-                    <Icon className="w-5 h-5" strokeWidth={1.5} />
-                  </span>
-                </div>
-                <h3 className="font-display text-2xl text-espresso mb-3">{title}</h3>
-                <p className="text-[14px] font-light text-warm-brown leading-relaxed">{body}</p>
-                <div className="mt-6 inline-flex items-center gap-2 text-[12px] text-gold tracking-wider uppercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" /> {stat}
-                </div>
-              </div>
-            </TiltCard>
-          ))}
-        </div>
-
-        <div className="container-narrow mt-8 flex items-center justify-between">
-          <p className="text-[11px] text-warm-brown tracking-widest uppercase">Drag · swipe · spin →</p>
-          <div className="flex gap-2">
-            <button onClick={() => scroll(-1)} aria-label="Previous" className="w-11 h-11 rounded-full border border-warm-border hover:border-gold hover:text-gold transition-all flex items-center justify-center">
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button onClick={() => scroll(1)} aria-label="Next" className="w-11 h-11 rounded-full border border-warm-border hover:border-gold hover:text-gold transition-all flex items-center justify-center">
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div className="container-narrow mt-16 flex flex-col items-center gap-6">
-        <div className="w-24 h-px bg-gold" />
-        <p className="font-display italic text-2xl text-espresso text-center flex items-center gap-3">
-          We fix all of this. In <TickingClock size={32} /> 7 days.
-        </p>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- SERVICES ---------- */
-function Services() {
-  const services = [
-    { num: "01", tag: "Web Design", title: "Websites that work as hard as you do.", body: "Beautiful, fast, mobile-optimised websites engineered to convert visitors into enquiries. No templates. No shortcuts. Built around your business and your customers." },
-    { num: "02", tag: "SEO", title: "Get found by people already looking for you.", body: "We build every site with Google in mind from day one. Local SEO, technical optimisation, keyword targeting — so your business shows up when it matters most." },
-    { num: "03", tag: "Lead Generation", title: "Turn traffic into revenue.", body: "Forms, landing pages, live chat, and CTA strategy that captures every possible lead from your site. Your website should be your best-performing salesperson." },
-  ];
-  return (
-    <section className="section-pad border-y border-warm-border/60">
-      <div className="container-narrow">
-        <div className="max-w-2xl space-y-4 mb-16">
-
-          <p className="eyebrow">What we do</p>
-          <h2 className="font-display text-4xl md:text-5xl text-espresso">
-            Everything your business needs to <em className="text-gold font-light">dominate online.</em>
-          </h2>
-        </div>
-        <div className="space-y-5">
-          {services.map((s) => (
-            <div key={s.num} className="reveal-left relative hover-lift-card sheen border-t border-warm-border bg-cream rounded-3xl p-8 md:p-12 overflow-hidden">
-              <span className="absolute left-0 top-0 h-1 w-0 group-hover:w-full bg-gradient-to-r from-gold via-[#f0d78c] to-gold transition-[width] duration-700" />
-              <span className="absolute right-8 top-2 font-display text-[120px] text-warm-border/40 leading-none pointer-events-none select-none">
-                {s.num}
-              </span>
-              <div className="relative max-w-2xl space-y-4">
-                <p className="text-[11px] tracking-[0.25em] uppercase text-gold">{s.tag}</p>
-                <h3 className="font-display text-3xl md:text-4xl text-espresso">{s.title}</h3>
-                <p className="text-[14px] font-light text-warm-brown leading-relaxed">{s.body}</p>
-                <Link to="/services" className="inline-flex items-center gap-2 text-gold text-[13px] hover:gap-3 transition-all pt-2">
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </section>
@@ -346,6 +230,9 @@ function Process() {
   return (
     <section className="relative section-pad bg-espresso text-ivory overflow-hidden">
       <AnimatedGridPattern numSquares={25} className="opacity-60" />
+      <div className="absolute inset-0 pointer-events-none opacity-70">
+        <Particles quantity={40} color="#C9973A" />
+      </div>
       <div className="relative container-narrow">
         <div className="max-w-2xl space-y-4 mb-16">
           <p className="eyebrow">The process</p>
@@ -356,11 +243,7 @@ function Process() {
         <div className="relative grid md:grid-cols-3 gap-12">
           <div className="reveal-clip absolute left-0 right-0 top-8 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent hidden md:block" />
           {steps.map((s, i) => (
-            <div
-              key={s.n}
-              className="relative space-y-4 reveal-scale"
-              style={{ transitionDelay: `${i * 140}ms` }}
-            >
+            <div key={s.n} className="relative space-y-4 reveal-scale" style={{ transitionDelay: `${i * 140}ms` }}>
               <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full border border-gold/40 bg-espresso-dark">
                 <span className="absolute inset-0 rounded-full border border-gold/30 animate-ripple" style={{ animationDelay: `${i * 0.6}s` }} />
                 <span className="font-display text-3xl text-gold leading-none">{s.n}</span>
@@ -373,7 +256,7 @@ function Process() {
         <div className="mt-20 flex flex-col items-center gap-6">
           <div className="w-24 h-px bg-gold" />
           <p className="font-display italic text-xl md:text-2xl text-ivory text-center">
-            Delivered in 7 days — or your first retainer month is free.
+            Delivered in 7 days. Live, ranked, converting.
           </p>
         </div>
       </div>
@@ -381,73 +264,13 @@ function Process() {
   );
 }
 
-/* ---------- FEATURED RESULT ---------- */
-function FeaturedResult() {
-  return (
-    <section className="section-pad">
-      <div className="container-narrow grid lg:grid-cols-2 gap-16 items-center">
-        <div className="reveal-left bg-cream-soft border border-warm-border rounded-3xl p-6 shadow-[0_30px_80px_-40px_rgba(44,32,24,0.2)]">
-          <div className="flex items-center gap-1.5 px-3 py-2 bg-cream-deep border border-warm-border rounded-t-xl">
-            <span className="w-2 h-2 rounded-full bg-[#E47C66]" />
-            <span className="w-2 h-2 rounded-full bg-[#E8B84A]" />
-            <span className="w-2 h-2 rounded-full bg-[#87A878]" />
-            <span className="ml-3 text-[10px] text-warm-brown">almanara.ae</span>
-          </div>
-          <div className="bg-cream p-8 rounded-b-xl space-y-3 min-h-[320px]">
-            <div className="text-[10px] tracking-widest uppercase text-gold">Marina · Restaurant</div>
-            <div className="font-display text-3xl text-espresso italic">Al Manara Bistro</div>
-            <div className="h-px bg-warm-border my-3" />
-            <div className="h-2 w-full bg-warm-border/60 rounded" />
-            <div className="h-2 w-5/6 bg-warm-border/60 rounded" />
-            <div className="h-2 w-2/3 bg-warm-border/60 rounded" />
-            <div className="flex gap-2 mt-5">
-              <div className="h-7 w-24 bg-espresso rounded-full" />
-              <div className="h-7 w-20 border border-warm-border rounded-full" />
-            </div>
-          </div>
-        </div>
-        <div className="space-y-6 reveal-right">
-          <p className="text-[11px] tracking-[0.25em] uppercase text-gold">Al Manara Bistro · Dubai Marina</p>
-          <div>
-            <div className="font-display text-7xl md:text-8xl text-espresso leading-none">
-              +<CountUp to={340} />%
-            </div>
-            <p className="font-display italic text-2xl text-warm-brown mt-2">increase in monthly enquiries.</p>
-          </div>
-          <p className="text-[15px] font-light text-warm-brown leading-relaxed">
-            A Dubai Marina restaurant came to us with a site that hadn't been touched
-            since 2017. We rebuilt it from scratch, optimised it for local search, and
-            added a reservation capture form. Within 90 days they had more inbound
-            bookings than they'd received in the previous two years combined.
-          </p>
-          <div className="relative pl-8 border-l border-gold">
-            <Quote className="absolute -left-3 top-0 w-6 h-6 text-gold fill-gold" />
-            <p className="font-display italic text-2xl text-espresso leading-snug">
-              "The phone hasn't stopped. We had to hire two new floor staff. Best money
-              we've spent in years."
-            </p>
-            <p className="mt-3 text-[12px] text-warm-brown">
-              Yousef Khan · Owner, Al Manara Bistro
-            </p>
-          </div>
-          <Link to="/services" className="inline-flex items-center gap-2 text-gold text-[13px] hover:gap-3 transition-all">
-            See how we build results like this <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-/* Reviews temporarily removed — will return with real client testimonials. */
-
+/* ---------- DIFFERENTIATORS (kept for narrative flow) ---------- */
 
 /* ---------- FINAL CTA ---------- */
 function FinalCTA() {
   return (
     <section className="relative section-pad bg-espresso text-ivory text-center overflow-hidden">
-      <Meteors number={25} />
+      <Meteors number={30} />
       <Ripples count={4} />
       <div className="relative container-narrow max-w-3xl space-y-7">
         <h2 className="font-display text-4xl md:text-[54px] leading-[1.1] text-ivory reveal-blur">
@@ -455,7 +278,7 @@ function FinalCTA() {
         </h2>
         <p className="text-[16px] font-light text-ivory/70 max-w-xl mx-auto reveal">
           Let's build something that actually works for your business. Book a free
-          30-minute strategy call — no pitch, no pressure.
+          30-minute strategy call. No pitch, no pressure.
         </p>
         <div className="flex flex-wrap justify-center gap-3 pt-2 reveal-scale">
           <Magnetic>
@@ -468,9 +291,12 @@ function FinalCTA() {
           </Magnetic>
         </div>
         <p className="text-[12px] text-ivory/50">
-          We'll WhatsApp you back shortly — usually within a few business hours.
+          We'll WhatsApp you back shortly, usually within a few business hours.
         </p>
       </div>
     </section>
   );
 }
+
+// Unused Zap/Eye/Shield imports guard (kept for future use)
+void Zap; void Eye; void Shield;

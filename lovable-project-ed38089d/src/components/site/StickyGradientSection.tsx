@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
  * Wraps a section with its own scroll-driven local gradient background.
  * As the user scrolls through the section, `from` fades into `to`.
  * The background stays visually pinned via `background-attachment: fixed`
- * feel — implemented with a `position: sticky` painted layer.
+ * feel , implemented with a `position: sticky` painted layer.
  */
 export function StickyGradientSection({
   from,

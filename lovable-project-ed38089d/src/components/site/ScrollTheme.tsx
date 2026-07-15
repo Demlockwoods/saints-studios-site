@@ -6,7 +6,7 @@ type Stop = { h: number; s: number; l: number };
  * Smooth, seamless scroll-driven page backdrop.
  * Renders a fixed full-viewport gradient layer *behind* the page so there
  * are no seams between sections. Sections that were previously painted
- * with `bg-cream-soft` etc. can stay — this layer sits at z=-1.
+ * with `bg-cream-soft` etc. can stay , this layer sits at z=-1.
  *
  * palette: array of HSL stops the backdrop interpolates through as the user
  * scrolls from top (index 0) to bottom (last index).

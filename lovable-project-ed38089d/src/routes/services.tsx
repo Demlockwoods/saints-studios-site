@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Mail, Phone, MessageCircle } from "lucide-react";
+
 import { SiteLayout } from "@/components/site/Layout";
 import { StickyGradientSection } from "@/components/site/StickyGradientSection";
 import { ServicesWheel } from "@/components/site/ServicesWheel";
@@ -11,13 +12,13 @@ import ShinyText from "@/components/reactbits/ShinyText";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Saints Studios" },
+      { title: "Services , Saints Studios" },
       { name: "description", content: "Web design, SEO, and lead generation for Dubai businesses. The complete online growth system." },
-      { property: "og:title", content: "Services — Saints Studios" },
+      { property: "og:title", content: "Services , Saints Studios" },
       { property: "og:description", content: "Not just a website. A complete online growth system." },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: "https://saints-studios.com/services" },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [{ rel: "canonical", href: "https://saints-studios.com/services" }],
   }),
   component: ServicesPage,
 });
@@ -64,7 +65,7 @@ function ServicesPage() {
             </h1>
             <p className="text-[16px] font-light text-warm-brown max-w-xl leading-relaxed">
               Three tightly-integrated services that work together to turn your
-              website into your best-performing salesperson — 24/7.
+              website into your best-performing salesperson , 24/7.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <Link to="/contact" className="btn-primary">
@@ -95,21 +96,58 @@ function ServicesPage() {
         <ServicesWheel />
       </StickyGradientSection>
 
-      {/* ---------- GUARANTEE ---------- */}
-      <section className="section-pad bg-espresso text-ivory text-center">
-        <div className="container-narrow max-w-3xl space-y-6">
-          <p className="text-gold font-display text-[120px] leading-none">7</p>
-          <h2 className="font-display text-4xl md:text-5xl text-ivory">
-            The 7-day <em className="text-gold font-light">guarantee.</em>
-          </h2>
-          <p className="text-[15px] font-light text-ivory/75 leading-relaxed">
-            We deliver your completed website within 7 days of receiving your content
-            and assets. If we miss the deadline through any fault of ours, your first
-            retainer month is completely free. We put it in writing because we want
-            you to feel safe, not just hopeful.
+      {/* ---------- BOOK NOW ---------- */}
+      <section className="relative section-pad bg-espresso text-ivory overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-70">
+          <Particles quantity={50} color="#C9973A" />
+        </div>
+        <div className="absolute inset-0 pointer-events-none opacity-40">
+          <Aurora />
+        </div>
+        <div className="relative container-narrow max-w-4xl text-center space-y-8">
+          <p className="eyebrow text-gold flex items-center justify-center gap-3">
+            <span className="w-8 h-px bg-gold" /> Book now <span className="w-8 h-px bg-gold" />
           </p>
+          <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05]">
+            Ready when you are. <em className="text-gold font-light">Let's build.</em>
+          </h2>
+          <p className="text-[15px] font-light text-ivory/75 max-w-2xl mx-auto leading-relaxed">
+            Book a free 30-minute strategy call, or reach us directly. We usually
+            reply within a few business hours.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 pt-2">
+            <Link to="/contact" className="btn-gold">
+              Start the questionnaire <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href="mailto:saintsstudiosae@gmail.com"
+              className="btn-outline-cream inline-flex items-center gap-2"
+              aria-label="Email Saints Studios"
+            >
+              <Mail className="w-4 h-4" /> Email us
+            </a>
+            <a
+              href="https://wa.me/971507619289"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-cream inline-flex items-center gap-2"
+              aria-label="WhatsApp Saints Studios"
+            >
+              <Phone className="w-4 h-4" /> WhatsApp
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-4 text-[13px] text-ivory/70">
+            <a href="mailto:saintsstudiosae@gmail.com" className="hover:text-gold transition-colors flex items-center gap-2">
+              <Mail className="w-3.5 h-3.5" /> saintsstudiosae@gmail.com
+            </a>
+            <span className="hidden sm:block w-px h-4 bg-ivory/20" />
+            <a href="https://wa.me/971507619289" className="hover:text-gold transition-colors flex items-center gap-2">
+              <MessageCircle className="w-3.5 h-3.5" /> +971 50 761 9289
+            </a>
+          </div>
         </div>
       </section>
+
     </SiteLayout>
   );
 }

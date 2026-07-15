@@ -9,12 +9,12 @@ export const Route = createFileRoute("/journal_/$slug")({
     if (!post) {
       return {
         meta: [
-          { title: "Article not found — Saints Studios" },
+          { title: "Article not found , Saints Studios" },
           { name: "robots", content: "noindex" },
         ],
       };
     }
-    const url = `/journal/${post.slug}`;
+    const url = `https://saints-studios.com/journal/${post.slug}`;
     return {
       meta: [
         { title: `${post.title} | Saints Studios` },

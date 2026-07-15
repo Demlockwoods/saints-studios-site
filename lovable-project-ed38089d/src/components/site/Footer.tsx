@@ -14,16 +14,22 @@ export function Footer() {
             make your phone ring.
           </p>
           <div className="flex gap-3">
-            {[Linkedin, Instagram].map((Icon, i) => (
+            {[
+              { Icon: Linkedin, href: "#" },
+              { Icon: Instagram, href: "https://www.instagram.com/saintsstudiosae/" },
+            ].map(({ Icon, href }, i) => (
               <a
                 key={i}
-                href="#"
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                 className="w-9 h-9 rounded-full border border-ivory/15 flex items-center justify-center hover:border-gold hover:text-gold hover:-translate-y-0.5 transition-all"
               >
                 <Icon className="w-4 h-4" />
               </a>
             ))}
           </div>
+
           <p className="text-[12px] text-ivory/50">
             Based in Dubai, UAE. Serving businesses across the Emirates.
           </p>
@@ -60,7 +66,7 @@ export function Footer() {
             WhatsApp us
           </a>
           <p className="text-ivory/50 text-[12px]">
-            We'll WhatsApp you back shortly — usually within a few business hours.
+            We'll WhatsApp you back shortly , usually within a few business hours.
           </p>
         </div>
       </div>
@@ -70,7 +76,8 @@ export function Footer() {
           <p>© {new Date().getFullYear()} Saints Studios. All rights reserved.</p>
           <div className="flex gap-6">
             <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+            <Link to="/terms">Terms</Link>
+
             <span>Built by us. Obviously.</span>
           </div>
         </div>

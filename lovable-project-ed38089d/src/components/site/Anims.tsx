@@ -29,7 +29,7 @@ export function SpinningStars({ size = 18 }: { size?: number }) {
   );
 }
 
-/* SVG analog clock — second hand sweeps continuously, hour hand reads "7" */
+/* SVG analog clock , second hand sweeps continuously, hour hand reads "7" */
 export function TickingClock({ size = 56 }: { size?: number }) {
   return (
     <span
@@ -60,11 +60,11 @@ export function TickingClock({ size = 56 }: { size?: number }) {
         <g transform="rotate(210 50 50)">
           <line x1="50" y1="50" x2="50" y2="28" stroke="#2C2018" strokeWidth="3.5" strokeLinecap="round" />
         </g>
-        {/* minute hand — animated sweep */}
+        {/* minute hand , animated sweep */}
         <g className="origin-center animate-spin-slow" style={{ transformOrigin: "50px 50px" }}>
           <line x1="50" y1="50" x2="50" y2="14" stroke="#2C2018" strokeWidth="2.5" strokeLinecap="round" />
         </g>
-        {/* second hand — fast sweep */}
+        {/* second hand , fast sweep */}
         <g style={{ transformOrigin: "50px 50px", transformBox: "fill-box", animation: "spin-slow 4s linear infinite" }}>
           <line x1="50" y1="56" x2="50" y2="12" stroke="#C9973A" strokeWidth="1.5" strokeLinecap="round" />
         </g>
@@ -185,7 +185,7 @@ export function HeroLeadsDashboard() {
         </div>
       </div>
 
-      {/* floating notification pill — drops in mid-cycle */}
+      {/* floating notification pill , drops in mid-cycle */}
       <div
         className={`absolute -top-5 -right-3 md:-right-6 bg-espresso text-ivory rounded-2xl shadow-xl px-4 py-3 flex items-center gap-3 transition-all duration-500 ${tick > 0.55 ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-3"}`}
       >
@@ -198,7 +198,7 @@ export function HeroLeadsDashboard() {
         </div>
       </div>
 
-      {/* floating stat card — always on, ticking */}
+      {/* floating stat card , always on, ticking */}
       <div className="absolute -bottom-7 -left-4 md:-left-8 bg-cream-soft border border-gold/40 rounded-2xl shadow-xl px-5 py-3 animate-float-y">
         <div className="text-[9px] tracking-[0.25em] uppercase text-warm-brown">Live visitors</div>
         <div className="font-display text-2xl text-espresso tabular-nums">

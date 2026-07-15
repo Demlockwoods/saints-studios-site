@@ -25,10 +25,14 @@ export function Nav() {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-cream/95 backdrop-blur border-b border-warm-border"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-cream/40 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/30 shadow-[0_8px_32px_-8px_rgba(44,32,24,0.15)]"
+            : "bg-cream/20 backdrop-blur-xl backdrop-saturate-150 border-b border-white/20"
         }`}
+        style={{
+          WebkitBackdropFilter: scrolled ? "blur(24px) saturate(150%)" : "blur(16px) saturate(150%)",
+        }}
       >
+
         <div className="container-narrow flex items-center justify-between h-[72px]">
           <Link to="/" className="flex items-center gap-2 group">
             <span className="font-display text-2xl text-espresso tracking-tight">Saints</span>

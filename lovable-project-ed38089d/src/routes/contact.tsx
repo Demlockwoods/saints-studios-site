@@ -8,13 +8,13 @@ import { submitLead } from "@/lib/api/leads.functions";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Book a free strategy call | Saints Studios" },
+      { title: "Contact , Book a free strategy call | Saints Studios" },
       { name: "description", content: "Book a free 30-minute strategy call with Saints Studios. No pitch. No pressure. Just an honest conversation about your Dubai business." },
-      { property: "og:title", content: "Contact — Saints Studios" },
-      { property: "og:description", content: "We'll WhatsApp you back shortly — usually within a few business hours." },
-      { property: "og:url", content: "/contact" },
+      { property: "og:title", content: "Contact , Saints Studios" },
+      { property: "og:description", content: "We'll WhatsApp you back shortly , usually within a few business hours." },
+      { property: "og:url", content: "https://saints-studios.com/contact" },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://saints-studios.com/contact" }],
   }),
   component: ContactPage,
 });
@@ -56,7 +56,7 @@ function ContactPage() {
 
   const submit = () => {
     if (!answers.name || !answers.whatsapp || !answers.businessName) return;
-    // Fire-and-forget append to Google Sheet — never blocks WhatsApp flow.
+    // Fire-and-forget append to Google Sheet , never blocks WhatsApp flow.
     submitLeadFn({ data: {
       name: answers.name,
       businessName: answers.businessName,
@@ -89,7 +89,7 @@ function ContactPage() {
                 Let's talk about what your website could be doing <em className="text-gold font-light">for you.</em>
               </h1>
               <p className="text-[16px] font-light text-warm-brown max-w-xl">
-                Answer 4 quick questions and we'll WhatsApp you back shortly — usually
+                Answer 4 quick questions and we'll WhatsApp you back shortly , usually
                 within a few business hours. No pitch. No pressure.
               </p>
             </div>
@@ -148,7 +148,7 @@ function ContactPage() {
             <div className="bg-cream-soft border border-warm-border rounded-2xl p-6 space-y-3">
               <h3 className="font-display italic text-2xl text-espresso">Why the questions?</h3>
               <p className="text-[14px] font-light text-warm-brown">
-                So your strategy call is actually about <em>your</em> business — not a generic intro
+                So your strategy call is actually about <em>your</em> business , not a generic intro
                 deck. We show up prepared.
               </p>
             </div>
@@ -158,7 +158,7 @@ function ContactPage() {
               <ContactItem icon={Phone} label="+971 50 761 9289" />
               <ContactItem icon={MessageCircle} label="WhatsApp us (preferred)" />
               <p className="text-[12px] text-ivory/50 pt-2 border-t border-ivory/10">
-                We'll WhatsApp you back shortly — usually within a few business hours.
+                We'll WhatsApp you back shortly , usually within a few business hours.
               </p>
             </div>
           </aside>
@@ -208,7 +208,7 @@ function Step1({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); onContinue(); } }}
-        placeholder="e.g. Nour Kitchen — Lebanese restaurant"
+        placeholder="e.g. Nour Kitchen , Lebanese restaurant"
         className="w-full bg-transparent border-0 border-b border-warm-border focus:border-gold outline-none py-3 text-[17px] placeholder:text-warm-brown/50 transition-colors"
       />
       <button
